@@ -89,10 +89,19 @@ public class fchooser extends JFrame implements ListSelectionListener
 	}
 	private void load_text(String f){
 		System.out.println("open file: " + f);
-		try{
-			Process p = Runtime.getRuntime().
-				exec("java -jar editor.jar " + f
-				);
+		try{ 
+			String os = System.getProperty("os.name");
+			if(os.equals("Linux")){
+			
+				Process p = Runtime.getRuntime().
+					exec("java -jar /usr/share/java/editor.jar " 
+					+ f
+					);
+			}
+			else{
+				Process p = Runtime.getRuntime().
+					exec("java -jar c:/jhiroeditor/editor.jar " + f);
+			}
 		}
 		catch(Exception error){ 
 			System.out.println("opening error");

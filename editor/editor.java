@@ -128,8 +128,17 @@ class winpanel extends JFrame implements ActionListener
 		}	
 		else if(e.getSource() == open_file_button){
 			System.out.println("open");
+			String os;
 			try{
-				Process r =  Runtime.getRuntime().exec("java -jar fchooser.jar .");
+				System.out.println("os name: " + System.getProperty("os.name"));
+				os = System.getProperty("os.name");
+				
+				if(os.equals("Linux")){
+					Process r =  Runtime.getRuntime().exec("java -jar /usr/share/java/fchooser.jar .");
+				}
+				else{
+					Process rc = Runtime.getRuntime().exec("java -jar c:/jhiroeditor/fchooser.jar .");
+				}
 			}catch(Exception error)
 			{
 				System.out.println("Runtime error");
