@@ -82,7 +82,7 @@ public class fchooser extends JFrame implements ListSelectionListener
 			else{
 				System.out.println("[f] : " + f.getAbsolutePath());
 				model.addElement(f.getAbsolutePath());
-				list1.setModel(model);
+			list1.setModel(model);
 			}
 
 		}
