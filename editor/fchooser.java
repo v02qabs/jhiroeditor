@@ -91,10 +91,10 @@ public class fchooser extends JFrame implements ListSelectionListener
 		System.out.println("open file: " + f);
 		try{
 			Process p = Runtime.getRuntime().
-				exec("java editor " + f
+				exec("java -jar editor.jar " + f
 				);
 		}
-		catch(Exception error){
+		catch(Exception error){ 
 			System.out.println("opening error");
 		}
 	}

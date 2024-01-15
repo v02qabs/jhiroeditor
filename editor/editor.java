@@ -129,7 +129,7 @@ class winpanel extends JFrame implements ActionListener
 		else if(e.getSource() == open_file_button){
 			System.out.println("open");
 			try{
-				Process r =  Runtime.getRuntime().exec("java fchooser .");
+				Process r =  Runtime.getRuntime().exec("java -jar fchooser.jar .");
 			}catch(Exception error)
 			{
 				System.out.println("Runtime error");
