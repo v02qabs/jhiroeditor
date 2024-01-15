@@ -82,20 +82,9 @@ public class fchooser extends JFrame implements ListSelectionListener
 			else{
 				System.out.println("[f] : " + f.getAbsolutePath());
 				model.addElement(f.getAbsolutePath());
-				list1.setModel(model);
+			list1.setModel(model);
 			}
 
-		}
-	}
-	private void load_text(String f){
-		System.out.println("open file: " + f);
-		try{
-			Process p = Runtime.getRuntime().
-				exec("java editor " + f
-				);
-		}
-		catch(Exception error){
-			System.out.println("opening error");
 		}
 	}
 	private String Object;
@@ -128,13 +117,6 @@ public class fchooser extends JFrame implements ListSelectionListener
 				Files(f.getAbsolutePath());
 			}else if(f.isFile())
 			{
-				try{
-					System.out.println("[z]: " + f.getAbsolutePath());
-					load_text(f.getAbsolutePath());
-				}
-				catch(Exception error){
-					System.out.println("opening error");
-				}
 			}
 		}
 		catch(Exception error)

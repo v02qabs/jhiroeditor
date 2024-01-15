@@ -85,23 +85,34 @@ class winpanel extends JFrame implements ActionListener
 	}
 	
 	private JTextArea edit;
-	private JButton save;
+	private JButton save, new_files_button, open_file_button;
 	private void  past()
 	{
 		edit = new JTextArea();
+		  JScrollPane scrollpane = new JScrollPane(edit);
+    scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
 		save = new JButton("save");
-		save.addActionListener(this);		
+		save.addActionListener(this);
+		new_files_button = new JButton("new");
+		new_files_button.addActionListener(this);
+		open_file_button = new JButton("open");
+		open_file_button.addActionListener(this);
 		JPanel all_panel = new JPanel();	
 		JPanel control_panel = new JPanel();
-		GridLayout control = new GridLayout(1,2);	
-		GridLayout layout = new GridLayout(2,1);
+		GridLayout control = new GridLayout(1,3);
+		GridLayout layout = new GridLayout(2,2);
 		control_panel.setLayout(control);
 		all_panel.add(control_panel);
 		control_panel.add(save);
+		control_panel.add(new_files_button);
+		control_panel.add(open_file_button);
+		
 		all_panel.setLayout(layout);
 		
 		all_panel.add(control_panel);
-		all_panel.add(edit);
+		all_panel.add(scrollpane);
 		Container  contents = getContentPane();
 		contents.add(all_panel);
 	}
@@ -110,15 +121,33 @@ class winpanel extends JFrame implements ActionListener
 	{
 		System.out.println("typed subject.");
 		if(e.getSource() == save)
+		{
 			save();
-		else
-			error();
+		}else if(e.getSource() == new_files_button){
+			new_file();
+		}	
+		else if(e.getSource() == open_file_button){
+			System.out.println("open");
+			try{
+				Process r =  Runtime.getRuntime().exec("java fchooser .");
+			}catch(Exception error)
+			{
+				System.out.println("Runtime error");
+			}
+		}
+		else{
+			System.out.println("error");
+		}
+		
+		
 
 	}
 	private void new_file(){
 	System.out.println("新規作成");
 	setTitle("新規");
-	
+	set_filename(null);
+	//edit = new JTextArea();
+	edit.setText("");
 	}
 	
 	private void save()
@@ -133,7 +162,9 @@ class winpanel extends JFrame implements ActionListener
 		writer.close();
 	}
 	catch(Exception error)
-	{error();}
+	{
+	error();
+	}
 	}
 	private void error()
 	{
