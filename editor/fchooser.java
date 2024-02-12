@@ -8,7 +8,6 @@ import java.util.List;
 
 public class fchooser extends JFrame implements ListSelectionListener
 {	
-	public counter c;
 	public static void main(String[] args)
 	{
 		System.out.println("Hello");
