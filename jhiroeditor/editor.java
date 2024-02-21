@@ -111,13 +111,22 @@ class winpanel extends JFrame
 
 		JMenuBar menubar = new JMenuBar();		
 		JMenu file_menu = new JMenu("ファイル")	;
-		JMenu perl_exec = new JMenu("perlCompile");
+		JMenu perl_exec = new JMenu("実行");
 		menubar.add(file_menu);
 		menubar.add(perl_exec);
 		JMenuItem open_file_button = new JMenuItem("開く");
 		JMenuItem ExecPerl = new JMenuItem("Perlファイルの実行");
+		JMenuItem Java_EXEC = new JMenuItem("Javaプログラムの構成＆実行");
 		file_menu.add(open_file_button);
 		perl_exec.add(ExecPerl);
+		perl_exec.add(Java_EXEC);
+		Java_EXEC.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.out.println ("Java プログラムの構成と実行");
+				new jexec().initalized_file();
+			}
+		});
 		ExecPerl.addActionListener(new ActionListener()
 		{
 			@Override
@@ -152,6 +161,7 @@ class winpanel extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
+					System.out.println("保存");
 					save();
 				}
 		});
@@ -164,6 +174,7 @@ class winpanel extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					System.out.println("上書き保存");
+					save();
 				}
 		});
 		JMenuItem new_file_button = new JMenuItem("新規");
@@ -176,6 +187,16 @@ class winpanel extends JFrame
 					System.out.println("新規");
 					new_file();
 				}
+		});
+		JMenuItem finish_app = new JMenuItem("終了");
+		file_menu.add(finish_app);
+		finish_app.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("finish.");
+				System.exit(0);
+			}
 		});
 
 		JPanel all_panel = new JPanel();
@@ -226,13 +247,20 @@ class winpanel extends JFrame
 			String sub = edit.getText().toString();
 			System.out.println("g : " + sub);
 			File save_file = new File(get_filename());
+			
+
 			BufferedWriter writer = new BufferedWriter(new FileWriter(save_file));
 			writer.write(sub);
 			writer.close();
 		}
-		catch(Exception error)
+		catch(java.lang.NullPointerException no_found_file)
 		{
-			error();
+			System.out.println("not found_file.");
+			new FilenameNull().initalized_frame();
+		}
+		catch(IOException ioerror)
+		{
+			System.out.println("IOException error");
 		}
 	}
 
@@ -241,6 +269,40 @@ class winpanel extends JFrame
 		System.out.println("error");
 	}
 	
+}
+
+class jexec extends JFrame{
+	public jexec(){}
+	public void initalized_file(){
+		System.out.println("構成");
+		setSize(600,600);
+		setLayout(null);
+		JLabel  java_class_name = new JLabel("java class name");
+		java_class_name.setBounds(10,10,100,30);
+		add(java_class_name);
+		JLabel java_source_path = new JLabel("java source path");
+		java_source_path.setBounds(10,41,100,30);
+		add(java_source_path);
+		JLabel java_class_path = new JLabel("java class path ");
+		java_class_path.setBounds(10,41+31,100,30);
+		add(java_class_path);
+		setVisible(true);
+	}
+}
+
+class FilenameNull extends JFrame{
+	public FilenameNull(){
+	}
+	public void initalized_frame(){
+		System.out.println("file is null name.");
+		try{
+			Process file_chooser = Runtime.getRuntime().exec("java fchooser .");
+		}
+		catch(Exception error){
+			System.out.println("exec error");
+		}
+
+	}
 }
 
 
