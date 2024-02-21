@@ -83,6 +83,21 @@ class winpanel extends JFrame
 
 			
 	}
+	private static void printInputStream(InputStream is) throws IOException {
+		try{
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			for(;;){
+				String line;
+				line = br.readLine();
+				if(line == null) break;
+				System.out.println(line);
+			}
+			br.close();
+		}
+		catch(Exception error){
+			System.out.println("command exec error: " + error.toString());
+		}
+	}
 	
 	private JTextArea edit;
 	private JButton save, new_files_button, open_file_button;
@@ -96,9 +111,31 @@ class winpanel extends JFrame
 
 		JMenuBar menubar = new JMenuBar();		
 		JMenu file_menu = new JMenu("ファイル")	;
+		JMenu perl_exec = new JMenu("perlCompile");
 		menubar.add(file_menu);
+		menubar.add(perl_exec);
 		JMenuItem open_file_button = new JMenuItem("開く");
+		JMenuItem ExecPerl = new JMenuItem("Perlファイルの実行");
 		file_menu.add(open_file_button);
+		perl_exec.add(ExecPerl);
+		ExecPerl.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.out.println("Perl " + get_filename() + " を実行します。");
+				try{
+					Process pro = Runtime.getRuntime().exec("perl " + "./" + get_filename() );
+					pro.waitFor();
+					printInputStream(pro.getInputStream());
+					printInputStream(pro.getErrorStream());
+				}
+				catch(Exception error)
+				{
+					System.out.println("error " + error.toString());
+				}
+
+			}
+		});
 		open_file_button.addActionListener(new ActionListener()
 			{
 				@Override

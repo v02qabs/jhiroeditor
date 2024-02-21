@@ -93,7 +93,7 @@ public class fchooser extends JFrame implements ListSelectionListener
 			if(os.equals("Linux")){
 			
 				Process p = Runtime.getRuntime().
-					exec("java -jar /usr/share/java/editor.jar " 
+					exec("java editor " 
 					+ f
 					);
 			}
