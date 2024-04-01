@@ -124,7 +124,7 @@ class winpanel extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e){
 				System.out.println ("Java プログラムの構成と実行");
-				new jexec().initalized_file();
+				new jexec().initalized_file(fname);
 			}
 		});
 		ExecPerl.addActionListener(new ActionListener()
@@ -273,20 +273,17 @@ class winpanel extends JFrame
 
 class jexec extends JFrame{
 	public jexec(){}
-	public void initalized_file(){
+	public void initalized_file(String fname){
 		System.out.println("構成");
 		setSize(600,600);
 		setLayout(null);
-		JLabel  java_class_name = new JLabel("java class name");
-		java_class_name.setBounds(10,10,100,30);
-		add(java_class_name);
-		JLabel java_source_path = new JLabel("java source path");
-		java_source_path.setBounds(10,41,100,30);
-		add(java_source_path);
-		JLabel java_class_path = new JLabel("java class path ");
-		java_class_path.setBounds(10,41+31,100,30);
-		add(java_class_path);
+		JLabel java_file_label = new JLabel();
+		java_file_label.setBounds(10,10,600,30);
+		java_file_label.setText("開いているファイル名：" + fname);
+		add(java_file_label);
+		System.out.println("開いているファイル名：" + fname);
 		setVisible(true);
+		
 	}
 }
 
