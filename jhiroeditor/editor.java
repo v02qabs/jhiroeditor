@@ -220,7 +220,8 @@ class winpanel extends JFrame
 				os = System.getProperty("os.name");
 				
 				if(os.equals("Linux")){
-					Process r =  Runtime.getRuntime().exec("java -jar /usr/share/java/fchooser.jar .");
+					//Process r =  Runtime.getRuntime().exec("java -jar /usr/share/java/fchooser.jar .");
+					new execute().exec("java -jar /usr/share/java/fchooser.jar .");
 				}
 				else{
 					Process rc = Runtime.getRuntime().exec("java -jar c:/jhiroeditor/fchooser.jar .");
@@ -278,10 +279,17 @@ class jexec extends JFrame{
 		setSize(600,600);
 		setLayout(null);
 		JLabel java_file_label = new JLabel();
-		java_file_label.setBounds(10,10,600,30);
-		java_file_label.setText("開いているファイル名：" + fname);
+		java_file_label.setBounds(10,10,300,30);
+		java_file_label.setText("開いているファイル名：" + new File(fname).getAbsolutePath());
 		add(java_file_label);
-		System.out.println("開いているファイル名：" + fname);
+		System.out.println("開いているファイル名：" + new File(fname).getAbsolutePath());
+		//バイナリコードの生成先を指定する
+		JLabel bin_code_label = new JLabel("スクリプト生成先: ");
+		bin_code_label.setBounds(10,10,300,30);
+		add(bin_code_label);
+		JButton code_make_to_file_button = new JButton("生成先");
+		code_make_to_file_button.setBounds(10+300, 10,300,30);
+		add(code_make_to_file_button);
 		setVisible(true);
 		
 	}
