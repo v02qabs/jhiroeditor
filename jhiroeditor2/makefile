@@ -1,7 +1,10 @@
 install:
-	cd src
-	javac *.java -d ../bin/.
+	javac com/apps/hiro/jhiroeditor2/*.java -cp /usr/lib/java/commons-net.jar: -d .
+
+
 
 all:
-	cd ../bin/.
-	java hiroeditor ../src/hiroeditor
+
+	java -cp /usr/lib/java/commons-net.jar: com/apps/hiro/jhiroeditor2/hiroeditor ./makefile
+
+
