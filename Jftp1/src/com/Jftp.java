@@ -13,8 +13,14 @@ class Jftpg
 		System.out.println("Hello Jftp");
 		try
 		{
-			String option_command = args[0];
-			String file_path_name = args[1];
+			System.out.print("コマンドを入力してください。：");
+			Scanner scan_command = new Scan(System.in);			
+			String string_command = scan_command.next();
+			System.out.print("パスを入力せよ：");
+			Scanner scan_path = new Scanner(System.in);
+			String string_path = scan_path.next();
+			String option_command = string_command;
+			String file_path_name = string_path;
 			System.out.println("オプション：" + option_command + "\n" + "ファイル名もしくは、ファイルディレクトリ：" + file_path_name);
 			if(option_command.equals("add") || file_path_name.equals("."))
 			{
