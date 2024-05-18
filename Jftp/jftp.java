@@ -32,12 +32,20 @@ class jftp
 		{
 					System.out.println("Hello Worlds.");
 		}
+		if(args0.equals("settings") || args1.equals("account"))
+		{	
+			new account_new();
+		
+		}
+		if(args0.equals(
+
 		else if(args0.equals("add") || args1.equals(".")){
-			System.out.println("add .");
+			new _add();
 		}
 		else if(args0.equals("push") || args1.equals(null))
 		{
 			System.out.println("push");
+			new _push();
 		}
 
 
