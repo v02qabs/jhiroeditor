@@ -7,5 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/home/takesue090/git/Jftpg/lib/ftp4j.jar"/>
+	<classpathentry kind="lib" path="/home/takesue090/git/jhiroeditor/Jftp1/Jftpg.jar"/>
+	<classpathentry kind="lib" path="/home/takesue090/git/jhiroeditor/Jftp1/ftp4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
