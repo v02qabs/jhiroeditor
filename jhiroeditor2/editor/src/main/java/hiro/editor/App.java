@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.Button;
 
 public class App extends Application {
 
@@ -13,15 +15,16 @@ public class App extends Application {
         // ウィンドウのタイトルを設定
         primaryStage.setTitle("Hello, JavaFX!");
 
-        // ラベルを作成
-        Label helloLabel = new Label("Hello, JavaFX!");
-
+        // ボタンを作成
+        Button button1 = new Button("Button1");
+        Button button2 = new Button("Button2");
+		
         // レイアウトを設定
-        StackPane root = new StackPane();
-        root.getChildren().add(helloLabel);
+        HBox hbox = new HBox(10);
+        hbox.getChildren().addAll(button1, button2);
 
         // シーンを作成
-        Scene scene = new Scene(root, 300, 200);
+        Scene scene = new Scene(hbox, 300, 200);
 
         // シーンをステージに設定
         primaryStage.setScene(scene);
