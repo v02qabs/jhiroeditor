@@ -22,7 +22,6 @@ class editor
 			System.out.println("引数がnullです。");
 			new winpanel(null);
 		}
-
 	}
 }
 
@@ -118,6 +117,7 @@ class winpanel extends JFrame
 		JMenuItem ExecPerl = new JMenuItem("Perlファイルの実行");
 		JMenuItem Java_EXEC = new JMenuItem("Javaプログラムの構成＆実行");
 		file_menu.add(open_file_button);
+		
 		perl_exec.add(ExecPerl);
 		perl_exec.add(Java_EXEC);
 		Java_EXEC.addActionListener(new ActionListener(){
@@ -187,6 +187,14 @@ class winpanel extends JFrame
 					System.out.println("新規");
 					new_file();
 				}
+		});
+		JMenuItem overwrite = new JMenuItem("名前をつけて保存");
+		file_menu.add(overwrite);
+		overwrite.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.out.println("名前を付けて保存");
+			}
 		});
 		JMenuItem finish_app = new JMenuItem("終了");
 		file_menu.add(finish_app);
@@ -289,6 +297,12 @@ class jexec extends JFrame{
 		add(bin_code_label);
 		JButton code_make_to_file_button = new JButton("生成先");
 		code_make_to_file_button.setBounds(10+300, 10,300,30);
+		code_make_to_file_button.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+			}
+		}
+		);
 		add(code_make_to_file_button);
 		setVisible(true);
 		
