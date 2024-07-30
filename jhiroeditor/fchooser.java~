@@ -7,38 +7,16 @@ import java.util.List;
 
 
 public class fchooser extends JFrame implements ListSelectionListener
-{	//String  path;
+{	
 	public static void main(String[] args)
 	{
 		System.out.println("Hello");
-		
-		try{
-			String path = args[0];
-			String getText = args[1];
-			new fchooser(path, getText);
-		
-		}
-		catch(Exception error){
-			String path = args[0];
-			new fchooser(path, null);
-		}
-		
+		String path = args[0];
+		new fchooser(path);
 	}
-	public String  string;
-	public void set_String(String setText){
-			string = setText;
-			
-	}
-
-	public String get_String(){
-			 string = get_String();
-			return string;
-	}
-	
-	public fchooser(String path, String getText)
+	public fchooser(String path)
 	{
-		init(path, getText);
-		set_String(getText);
+		init(path);
 	}
 	JPanel all_panel, control_panel;
 	JList list1;
@@ -54,23 +32,12 @@ public class fchooser extends JFrame implements ListSelectionListener
 		return this.gpath;
 	}
 	private JTextField file_url;
-	private void write_dir(){
-		String home = System.getProperty("user.home");
-		System.out.println("get hoem : " + home);
-		try{
-			File f = new File(home + "/init_send_dir.txt");
-			FileWriter fw = new FileWriter(f,false);
-			fw.write(getPath());
-			fw.close();
-		}
-		catch(Exception error){
-				System.out.println("error : " + error.toString());
-		}
-		
-		
+	private void send_dir(){
+		String home;
+		System.out.println("get home: " + System.propertry("user.home", home))
 	}
 	
-	private void init(String path, String getText)
+	private void init(String path)
 	{
 		setPath(path);
 		System.setProperty("user.dir", path);
@@ -82,9 +49,8 @@ public class fchooser extends JFrame implements ListSelectionListener
 		send_dir.addActionListener(new ActionListener(){
 					@Override
 					public void actionPerformed(ActionEvent e ){
-							System.out.println("Action is send dir.");
+							SYstem.out.println("Action is send dir.");
 							write_dir();
-							new dialog(get_String());
 				}
 		});
 		file_url = new JTextField();
@@ -134,7 +100,7 @@ public class fchooser extends JFrame implements ListSelectionListener
 				System.out.println("[e] : " + f.getAbsolutePath());
 				model.addElement(f.getAbsolutePath());
 				list1.setModel(model);
-				//setPath(f.getAbsolutePath());
+				
 				
 			}
 			else{
@@ -189,7 +155,6 @@ public class fchooser extends JFrame implements ListSelectionListener
 			File f = new File(list1.getSelectedValue().toString());
 			if(f.isDirectory()){
 				System.out.println("is dir.");
-				setPath(f.getAbsolutePath());
 				model.clear();
 				repaint();
 				Files(f.getAbsolutePath());
@@ -213,52 +178,3 @@ public class fchooser extends JFrame implements ListSelectionListener
 	}
 }
 
-class dialog extends JFrame{
-	public JTextField field;
-	private void write_data(){
-		try{
-			
-			//String write_editor = e.edit.getText().toString();
-			FileWriter writer = new FileWriter(new File(field.getText().toString()));
-			writer.write(getText);
-			writer.close();
-		}
-		catch(Exception error){
-			System.out.println("error : " + error.toString());
-		}
-	}
-	public String getText;
-		public dialog(String getText){
-			setText(getText);
-		}
-		private void setText(String getTextl){
-			getText = getTextl;
-		}
-		public void getText(){
-			//return getText;
-		}
-
-		public void init_window(){
-				System.out.println("Hello dialog");
-				JLabel label = new JLabel("保存ファイル名：");
-				field  = new JTextField();
-				setLayout(null);
-				label.setBounds(100,30,10,10);
-				field.setBounds(100,30,110,10);
-				JButton save_button = new JButton("保存");
-								save_button.addActionListener(new ActionListener(){
-							@Override
-							public void actionPerforeed(ActionEvent e){
-									System.out.println("Hello action");
-									write_data();
-								}
-							});
-				add(label);
-				add(field);
-				add(save_button);
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				setVisible(true);
-		}
-}
-
-				
