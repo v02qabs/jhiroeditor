@@ -246,7 +246,7 @@ class winpanel extends JFrame
 				
 				if(os.equals("Linux")){
 					//Process r =  Runtime.getRuntime().exec("java -jar /usr/share/java/fchooser.jar .");
-					new execute().exec("java -jar /usr/share/java/fchooser.jar .");
+					new stream_cons().start_command("java", "fhooser",  "..");
 				}
 				else{
 					Process rc = Runtime.getRuntime().exec("java -jar c:/jhiroeditor/fchooser.jar .");

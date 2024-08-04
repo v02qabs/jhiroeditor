@@ -162,7 +162,7 @@ class winpanel extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					System.out.println("保存");
-					save();
+					as_save();
 				}
 		});
 		
@@ -194,6 +194,7 @@ class winpanel extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e){
 				System.out.println("名前を付けて保存");
+				as_save();
 			}
 		});
 		JMenuItem finish_app = new JMenuItem("終了");
@@ -220,6 +221,22 @@ class winpanel extends JFrame
 		Container  contents = getContentPane();
 		contents.add(all_panel);
 	}
+	private void as_save(){
+			System.out.println("as save.");
+			String getString = edit.getText().toString();
+			System.out.println(getString);
+			try{
+				getString = edit.getText().toString();
+				//Process p = Runtime.getRuntime().exec("java fchooser . " + getString);
+				new stream_cons().start_command("java fchooser " , "./" , getString);
+				
+			}
+			catch(Exception error){
+					System.out.println("error : " + error.toString());
+			}
+
+		}
+		
 	private void open(){
 			System.out.println("open");
 			String os;
