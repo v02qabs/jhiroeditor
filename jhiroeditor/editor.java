@@ -162,7 +162,7 @@ class winpanel extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					System.out.println("保存");
-					save();
+					as_save();
 				}
 		});
 		
@@ -224,8 +224,11 @@ class winpanel extends JFrame
 	private void as_save(){
 			System.out.println("as save.");
 			String getString = edit.getText().toString();
+			System.out.println(getString);
 			try{
-				Process p = Runtime.getRuntime().exec("java fchooser . " + getString);
+				getString = edit.getText().toString();
+				//Process p = Runtime.getRuntime().exec("java fchooser . " + getString);
+				new stream_cons().start_command("java fchooser " , "./" , getString);
 				
 			}
 			catch(Exception error){

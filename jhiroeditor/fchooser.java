@@ -16,10 +16,11 @@ public class fchooser extends JFrame implements ListSelectionListener
 			String path = args[0];
 			String getText = args[1];
 			new fchooser(path, getText);
+			System.out.println(path + " / " + getText);
 		
 		}
 		catch(Exception error){
-			String path = args[0];
+			String path = args[1];
 			new fchooser(path, null);
 		}
 		
@@ -78,18 +79,18 @@ public class fchooser extends JFrame implements ListSelectionListener
 		setBounds(0,0,800,800);
 		control_panel = new JPanel();
 		control_panel.setLayout(new BorderLayout());
-		JButton send_dir = new JButton("send dir");
-		send_dir.addActionListener(new ActionListener(){
-					@Override
-					public void actionPerformed(ActionEvent e ){
-							System.out.println("Action is send dir.");
-							write_dir();
-							new dialog(get_String());
-				}
-		});
+		JButton send_dir_button= new JButton("send dir");
+		send_dir_button.addActionListener(new ActionListener(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			System.out.println("getPath : " + getPath());
+			System.out.println("text " +  getText);
+			new send_dir(getPath()) ;
+			new stream_cons().start_command("java ", " saves", getText);
+		}});
 		file_url = new JTextField();
 		control_panel.add(file_url, BorderLayout.NORTH);
-		control_panel.add(send_dir, BorderLayout.NORTH);
+		control_panel.add(send_dir_button, BorderLayout.NORTH);
 		list1 = new JList();
 		JScrollPane scrollpane = new JScrollPane(list1);
 		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -212,53 +213,5 @@ public class fchooser extends JFrame implements ListSelectionListener
 	
 	}
 }
-
-class dialog extends JFrame{
-	public JTextField field;
-	private void write_data(){
-		try{
+	
 			
-			//String write_editor = e.edit.getText().toString();
-			FileWriter writer = new FileWriter(new File(field.getText().toString()));
-			writer.write(getText);
-			writer.close();
-		}
-		catch(Exception error){
-			System.out.println("error : " + error.toString());
-		}
-	}
-	public String getText;
-		public dialog(String getText){
-			setText(getText);
-		}
-		private void setText(String getTextl){
-			getText = getTextl;
-		}
-		public void getText(){
-			//return getText;
-		}
-
-		public void init_window(){
-				System.out.println("Hello dialog");
-				JLabel label = new JLabel("保存ファイル名：");
-				field  = new JTextField();
-				setLayout(null);
-				label.setBounds(100,30,10,10);
-				field.setBounds(100,30,110,10);
-				JButton save_button = new JButton("保存");
-								save_button.addActionListener(new ActionListener(){
-							@Override
-							public void actionPerforeed(ActionEvent e){
-									System.out.println("Hello action");
-									write_data();
-								}
-							});
-				add(label);
-				add(field);
-				add(save_button);
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				setVisible(true);
-		}
-}
-
-				
