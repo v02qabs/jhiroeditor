@@ -4,3 +4,5 @@ install:
 all:
 	make -C ./bin/
 		
+javaexec:
+	make -C ./bin/.
